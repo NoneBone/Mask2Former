@@ -1,31 +1,33 @@
-## Installation
+## 安装
 
-### Requirements
-- Linux or macOS with Python ≥ 3.6
-- PyTorch ≥ 1.9 and [torchvision](https://github.com/pytorch/vision/) that matches the PyTorch installation.
-  Install them together at [pytorch.org](https://pytorch.org) to make sure of this. Note, please check
-  PyTorch version matches that is required by Detectron2.
-- Detectron2: follow [Detectron2 installation instructions](https://detectron2.readthedocs.io/tutorials/install.html).
-- OpenCV is optional but needed by demo and visualization
+### 要求
+
+- Linux 或 macOS，Python 版本 ≥ 3.6
+- PyTorch ≥ 1.9 和 [torchvision](https://github.com/pytorch/vision/) 这与 PyTorch 的安装方式相符。
+  它们一起安装 [pytorch.org](https://pytorch.org) 为了确保这一点。注意，请检查
+  PyTorch 版本与 Detectron2 所需的版本匹配。
+- 检测器2：跟随 [Detectron2 installation instructions](https://detectron2.readthedocs.io/tutorials/install.html)。
+- OpenCV 是可选的，但演示和可视化需要它。
 - `pip install -r requirements.txt`
 
-### CUDA kernel for MSDeformAttn
-After preparing the required environment, run the following command to compile CUDA kernel for MSDeformAttn:
+### MSDeformAttn 的 CUDA 内核
+准备好所需环境后，运行以下命令为 MSDeformAttn 编译 CUDA 内核：
 
-`CUDA_HOME` must be defined and points to the directory of the installed CUDA toolkit.
+`CUDA_HOME` 必须进行定义，并指向已安装的 CUDA 工具包的目录。
 
 ```bash
+export CUDA_HOME=/usr/local/cuda
 cd mask2former/modeling/pixel_decoder/ops
 sh make.sh
 ```
 
-#### Building on another system
-To build on a system that does not have a GPU device but provide the drivers:
+#### 在另一个系统的基础上构建
+在没有GPU设备的系统上构建，但需要提供驱动程序：
 ```bash
 TORCH_CUDA_ARCH_LIST='8.0' FORCE_CUDA=1 python setup.py build install
 ```
 
-### Example conda environment setup
+### conda 环境设置示例
 ```bash
 conda create --name mask2former python=3.8 -y
 conda activate mask2former
